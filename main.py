@@ -1,10 +1,37 @@
 from microbit import *
 
+signal_state = {
+    "R": "OFF",
+    "Y": "OFF",
+    "G": "OFF",
+}
+
 
 def main():
+    # while True:
+    #     handle_input()
+    #     update_display()
     while True:
-        handle_input()
+        signal_state["R"] = toggle_light(signal_state["R"])
         update_display()
+        sleep(5000)
+
+        signal_state["Y"] = toggle_light(signal_state["Y"])
+        update_display()
+        sleep(1000)
+        signal_state["Y"] = toggle_light(signal_state["Y"])
+
+        signal_state["R"] = toggle_light(signal_state["R"])
+
+        signal_state["G"] = toggle_light(signal_state["G"])
+        update_display()
+        sleep(5000)
+        signal_state["G"] = toggle_light(signal_state["G"])
+
+        signal_state["Y"] = toggle_light(signal_state["Y"])
+        update_display()
+        sleep(3000)
+        signal_state["Y"] = toggle_light(signal_state["Y"])
 
 
 def update_display():
@@ -40,13 +67,6 @@ def toggle_light(light):
     else:
         light = "ON"
     return light
-
-
-signal_state = {
-    "R": "OFF",
-    "Y": "OFF",
-    "G": "OFF",
-}
 
 
 main()
