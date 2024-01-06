@@ -1,47 +1,56 @@
 from microbit import *
 
 lights = {
-    "R": "OFF",
-    "Y": "OFF",
-    "G": "OFF",
+    "R": False,
+    "Y": False,
+    "G": False,
 }
 
 
-def toggle_light(color: str) -> None:
-    if lights[color] == "ON":
-        lights[color] = "OFF"
+def set_lights(red: bool = False, yellow: bool = False, green: bool = False) -> None:
+    if red:
+        lights['R'] = True
     else:
-        lights[color] = "ON"
+        lights['R'] = False
+
+    if yellow:
+        lights['Y'] = True
+    else:
+        lights['Y'] = False
+
+    if green:
+        lights['G'] = True
+    else:
+        lights['G'] = False
+
+    update_display()
 
 
 def update_display():
-    if lights.get("R") == "ON":
-        display.set_pixel(4, 0, 9)
+    if lights['R']:
+        # display.set_pixel(4, 0, 9)
         pin2.write_digital(1)
     else:
-        display.set_pixel(4, 0, 0)
+        # display.set_pixel(4, 0, 0)
         pin2.write_digital(0)
 
-    if lights.get("Y") == "ON":
-        display.set_pixel(4, 2, 9)
+    if lights['Y']:
+        # display.set_pixel(4, 2, 9)
         pin1.write_digital(1)
     else:
-        display.set_pixel(4, 2, 0)
+        # display.set_pixel(4, 2, 0)
         pin1.write_digital(0)
 
-    if lights.get("G") == "ON":
-        display.set_pixel(4, 4, 9)
+    if lights['G']:
+        # display.set_pixel(4, 4, 9)
         pin0.write_digital(1)
     else:
-        display.set_pixel(4, 4, 0)
+        # display.set_pixel(4, 4, 0)
         pin0.write_digital(0)
 
 
-def handle_input():
-    if button_a.was_pressed():
-        lights["R"] = toggle_light(lights["R"])
-    elif button_b.was_pressed():
-        lights["G"] = toggle_light(lights["G"])
-    elif pin_logo.is_touched():
-        lights["Y"] = toggle_light(lights["Y"])
-        sleep(200)
+def countdown(seconds: int) -> None:
+    for i in range(seconds, 0, -1):
+        display.show(i)
+        sleep(1000)
+    display.clear()

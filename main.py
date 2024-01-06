@@ -1,41 +1,24 @@
 from microbit import *
-from lib import update_display, toggle_light
+from lib import set_lights, countdown
 
 
 def main():
     while True:
         # red light
-        toggle_light("R")
-        update_display()
-
-        for i in range(5, 0, -1):
-            display.show(i)
-            sleep(1000)
+        set_lights(red=True)
+        countdown(5)
 
         # red and yellow light
-        display.clear()
-        toggle_light("Y")
-        update_display()
+        set_lights(red=True, yellow=True)
         sleep(1000)
 
         # green light
-        toggle_light("Y")
-        toggle_light("R")
-        toggle_light("G")
-        update_display()
-        for i in range(5, 0, -1):
-            display.show(i)
-            sleep(1000)
+        set_lights(green=True)
+        countdown(5)
 
         # yellow light
-        display.clear()
-        toggle_light("G")
-        toggle_light("Y")
-        update_display()
+        set_lights(yellow=True)
         sleep(3000)
-
-        # red light
-        toggle_light("Y")
 
 
 main()
