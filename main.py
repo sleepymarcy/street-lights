@@ -22,9 +22,3 @@ def main():
 
 
 main()
-# mamy 4 opcje sygnalizacji świateł
-# 1. za pomocą literek na display'u
-# 2. za pomocą pojedyńczych ledów na display'u
-# 3. za pomocą ustawionych wcześniej obrazków
-#    (tablica która określa które ledy mają świecić i w jakim natężeniu)
-# 4. na płytce stykowej używając ledów

@@ -8,45 +8,19 @@ lights = {
 
 
 def set_lights(red: bool = False, yellow: bool = False, green: bool = False) -> None:
-    if red:
-        lights['R'] = True
-    else:
-        lights['R'] = False
-
-    if yellow:
-        lights['Y'] = True
-    else:
-        lights['Y'] = False
-
-    if green:
-        lights['G'] = True
-    else:
-        lights['G'] = False
-
+    lights['R'] = red
+    lights['Y'] = yellow
+    lights['G'] = green
     update_display()
 
 
-def update_display():
-    if lights['R']:
-        # display.set_pixel(4, 0, 9)
-        pin2.write_digital(1)
-    else:
-        # display.set_pixel(4, 0, 0)
-        pin2.write_digital(0)
-
-    if lights['Y']:
-        # display.set_pixel(4, 2, 9)
-        pin1.write_digital(1)
-    else:
-        # display.set_pixel(4, 2, 0)
-        pin1.write_digital(0)
-
-    if lights['G']:
-        # display.set_pixel(4, 4, 9)
-        pin0.write_digital(1)
-    else:
-        # display.set_pixel(4, 4, 0)
-        pin0.write_digital(0)
+# in python:
+#    True equals 1
+#    False equals 0
+def update_display() -> None:
+    pin2.write_digital(lights['R'])
+    pin1.write_digital(lights['Y'])
+    pin0.write_digital(lights['G'])
 
 
 def countdown(seconds: int) -> None:
